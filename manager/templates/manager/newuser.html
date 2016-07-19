@@ -1,0 +1,44 @@
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div class="container">
+        <h2>Input New User Details</h2>
+        <form action="{% url 'manager:addcompleted' %}" method="post"> {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">User Name</label>
+            <input type="text" class="form-control" name="username" placeholder="input user name">
+          </div>
+         
+          <div class="form-group">
+            <label for="exampleInputEmail1">Device Name</label>
+            <input type="text" class="form-control" name="devicename" placeholder="input device name">
+          </div>
+         
+          
+            {% if user.device_set.all %}
+                <ul>
+                    <h2>{{ user.user_name }}'s Device list</h2>
+                    {% for device in user.device_set.all %}
+                    <li>{{ device.device_name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>{{ user.user_name }} No Devices are available.</P>
+            {% endif %}          
+          <p><button type="add" class="btn btn-default">Add device</button></p>
+
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</body>

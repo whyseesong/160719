@@ -1,0 +1,16 @@
+<h1>{{ user.user_name }}</h1>
+
+{% if user.device_set.all %}
+    <ul>
+        <h2>{{ user.user_name }}'s Device list</h2>
+        {% for device in user.device_set.all %}
+        <li>{{ device.device_name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No Devices are available.</P>
+{% endif %}
+
+
+<a href="{% url 'manager:index' %}">return</a
+

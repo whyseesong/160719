@@ -1,0 +1,6 @@
+<h1> add completed </h1>
+
+<h2>{{user.user_name}}</h2>
+
+
+<a href="{% url 'manager:index' %}">go back</a>
